@@ -13,7 +13,7 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        factory(Post::class , 20)
+        factory(Post::class , 50)
                 -> make()
                 -> each(function($post){
                     $category = Category::inRandomOrder() -> first();
