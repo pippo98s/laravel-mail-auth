@@ -1,0 +1,1 @@
+<h1>{{$type}} <mark>[{{$name}}]</mark> was deleted</h1>

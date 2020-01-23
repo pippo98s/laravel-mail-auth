@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Post;
 use App\Category;
+use App\Mail\DbActionDelete;
 use App\Http\Requests\PostRequest;
 
 
@@ -46,6 +48,13 @@ class PostController extends Controller
     public function postDelete($id) {
         $post = Post::findOrFail($id);
         $post -> delete();
+
+        Mail::to("mia@mail.com")
+                ->send(new DbActionDelete(
+                    "Post",
+                    $post -> title
+                ));
+
         return redirect() -> route('home.index');
     }
 }
